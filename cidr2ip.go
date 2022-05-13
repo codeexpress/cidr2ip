@@ -97,7 +97,7 @@ func displayIPs(cidr string) {
 	}
 
 	if *printRangesPtrPtr == true {
-		fmt.Printf("%s-%s\n", ips[1], ips[len(ips)-1])
+		fmt.Printf("%s-%s\n", ips[1], ips[len(ips)-2])
 	} else {
 		for _, ip := range ips[1 : len(ips)-1] {
 			fmt.Println(ip)
