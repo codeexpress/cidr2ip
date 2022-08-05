@@ -1,4 +1,4 @@
-# cidr2ip
+#cidr2ip
 
 This program converts IPv4 CIDR blocks into their constituent IP addresses.
 
@@ -31,12 +31,15 @@ code@express:~$ cidr2ip -f cidrs.txt
 
 #### Download from the releases pages
 
-Download pre-built binary from the [releases page](https://github.com/codeexpress/cidr2ip/releases).
+Download pre-built binary from the release page.
+```
 
-#### Use `go install`
+```
+
+#### Use `go get`
 
 If you have `golang` tools installed, you can download and build the source code
 locally as follows:
 ```
-go install github.com/codeexpress/cidr2ip@latest
+
 ```
