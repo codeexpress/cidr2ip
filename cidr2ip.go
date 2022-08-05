@@ -18,6 +18,8 @@ const (
 var (
 	cidrFilePtr = flag.String("f", "",
 		"[Optional] Name of file with CIDR blocks")
+	printRangesPtrPtr = flag.Bool("r", false,
+		"[Optional] Print IP ranges instead of all IPs")
 )
 
 func main() {
@@ -50,8 +52,15 @@ func main() {
 			displayIPs(scanner.Text())
 		}
 	} else if len(args) > 0 { // look for CIDRs on cmd line
-		for _, ip := range args {
-			displayIPs(ip)
+		var cidrs []string
+		if *printRangesPtrPtr == true {
+			cidrs = args[1:]
+		} else {
+			cidrs = args
+		}
+
+		for _, cidr := range cidrs {
+			displayIPs(cidr)
 		}
 	} else { // no piped input, no file provide and no args, display usage
 		flag.Usage()
@@ -87,8 +96,12 @@ func displayIPs(cidr string) {
 		return
 	}
 
-	for _, ip := range ips[1 : len(ips)-1] {
-		fmt.Println(ip)
+	if *printRangesPtrPtr == true {
+		fmt.Printf("%s-%s\n", ips[1], ips[len(ips)-2])
+	} else {
+		for _, ip := range ips[1 : len(ips)-1] {
+			fmt.Println(ip)
+		}
 	}
 }
 
@@ -105,9 +118,11 @@ func increment(ip net.IP) {
 
 func usage() {
 	fmt.Fprintf(os.Stderr, "CIDR to IPs version %s\n", Version)
-	fmt.Fprintf(os.Stderr, "Usage:   $ cidr2ip [-f <filename>] <list of cidrs> \n")
+	fmt.Fprintf(os.Stderr, "Usage:   $ cidr2ip [-r] [-f <filename>] <list of cidrs> \n")
 	fmt.Fprintf(os.Stderr, "Example: $ cidr2ip -f cidrs.txt\n")
 	fmt.Fprintf(os.Stderr, "         $ cidr2ip 10.0.0.0/24\n")
+	fmt.Fprintf(os.Stderr, "         $ cidr2ip -r 10.0.0.0/24\n")
+	fmt.Fprintf(os.Stderr, "         $ cidr2ip -r -f cidrs.txt\n")
 	fmt.Fprintf(os.Stderr, "         $ cat cidrs.txt | cidr2ip \n")
 	fmt.Fprintf(os.Stderr, "--------------------------\nFlags:\n")
 	flag.PrintDefaults()
