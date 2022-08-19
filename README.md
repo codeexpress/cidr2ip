@@ -16,7 +16,7 @@ code@express:~$ cidr2ip 10.0.0.0/30 192.68.0.0/30
 The `-r` flag outputs IP ranges seperated by hyphen.
 
 ```
-code@express:~$ cidr2ip 10.0.0.0/30 192.68.0.0/30
+code@express:~$ cidr2ip -r 10.0.0.0/30 192.68.0.0/30
 10.0.0.1-10.0.0.2
 192.68.0.1-192.68.0.2
 ```
