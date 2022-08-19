@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	Version = "1.0.0"
+	Version = "2.0.0"
 	IPRegex = `\b(?:\d{1,3}\.){3}\d{1,3}\b$`
 )
 
