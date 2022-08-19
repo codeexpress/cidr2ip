@@ -37,10 +37,6 @@ code@express:~$ cidr2ip -f cidrs.txt
 
 ### Install
 
-#### Download from the releases pages
-
-Download pre-built binary from the [releases page](https://github.com/codeexpress/cidr2ip/releases).
-
 #### Use `go install`
 
 If you have `golang` tools installed, you can download and build the source code
@@ -48,3 +44,7 @@ locally as follows:
 ```
 go install github.com/codeexpress/cidr2ip@latest
 ```
+
+#### Download from the releases pages
+
+Download pre-built binary from the [releases page](https://github.com/codeexpress/cidr2ip/releases/latest). Rename it to `cidr2ip`. Optionally, add it to your `PATH` to be able to invoke `cidr2ip` from any directory without specifying the full path to binary.
